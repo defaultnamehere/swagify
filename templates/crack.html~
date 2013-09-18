@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+<p class="leader"> Crack a hash </p>
+
+<form action="/cracker">
+
+    <input type="text" name="hash" placeholder="Hash" />
+    <input class="btn btn-primary" type="sumbit" value="Crack!" />
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block container %}
+
+<div class="container">
+    <h1 class="swagify-header text-center">Swagify</h1>
+</div>
+
+
+<div >
+        <h1 class="swagified text-center "></h1>
+</div>
+<div class="container swagify-form-div">
+    <form class="swagify-form" action="#">
+        <input type="text" class="phrase input-block-level" placeholder="Swagify some stuff"/>
+
+        <button type="button" class="btn btn-submit btn-primary btn-large btn-block" >$w@g1fy</button>
+    </form>
+
+</div>
+<br>
+
+<p class="muted footer text-center"> I made this because I thought it would be funny. You can talk to me about it if you want. <a href="https://twitter.com/_alexanderhogue">@_alexanderhogue</a>
+
+</p>
+<p class="muted text-center"> Credit to Ollie Hogue, 12 for the idea.</p>
+</div>
+
+
+{% endblock %}

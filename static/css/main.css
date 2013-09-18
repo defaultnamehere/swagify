@@ -1,0 +1,52 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+.swagify-header {
+    font-size : 100px !important;
+    line-height: 100px;
+}
+
+div.swagify-form-div{
+
+    padding-top: 150px;
+}
+form.swagify-form {
+
+    width: 350px;
+    margin: 0 auto !important;
+
+}
+
+h1.swagified {
+    padding-top:50px;
+}
+input.phrase {
+
+    display: block;
+}
+
+button.btn-submit {
+    width:300px;
+    margin:0 auto;
+}
+
+p.footer {
+    padding-top: 200px; /*I am bad at CSS. I'm no @taybenlor */
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,77 @@
+{% extends 'base.html'  %}
+{% block container %}
+
+<h1> Administration </h1>
+
+<table class='table' id='scoreboard'>
+    <thead>
+        <tr></tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+<button class="btn btn-info " id="modify-karma" href="#">Modify Karma</button>
+<button class="btn btn-danger pull-right" id="del-person" href="#">Delete person</button>
+<button class="btn btn-success pull-right" id="add-person" href="#">Add person</button>
+
+<br/>
+<br/>
+<br/>
+<div id="modify-karma" class="plinkitytab">
+    <div class="btn-group" data-toggle="buttons-radio"> 
+    <button type="button" class="btn btn-success active" id="add" >Add</button>
+    <button type="button" class="btn btn-danger" id="remove">Deduct</button>
+    </div>
+    <br>
+    <br>
+    <form action="/updatekarma" class="well add-karma" onsubmit="return
+    negateAmounts(this);">
+    <input type="text" class="typeahead" placeholder="Name"
+    data-provide="typeahead" name="name" autocomplete='off'> 
+
+    <input class="input-small" type="number" value="1"
+           name="karma" step="any" min="0"><br> 
+        <input type="text" name="reason" placeholder="Reason" class="span6" autocomplete='off'> <br> 
+        <input type="text" name="commit-hash" placeholder="Commit hash" autocomplete='off'> <br> 
+        <input type="hidden" name="name2" value="" /><input type="hidden"
+        name="karma2"><br/>
+        <input class="button btn-primary" type="submit" value="Submit" />
+    </form>
+
+
+    <form action='/updatekarma' class="well remove-karma" style="display:none;"
+    onsubmit="negateAmounts(this);">
+
+    <input type="text" placeholder="Name" class="typeahead"
+        data-provide="typeahead" name="name" autocomplete='off'>
+        <input class="input-small" type="number" value="1"
+        name="karma">
+        <br>
+        <input type="text" placeholder="Reviewer"class="typeahead"
+        data-provide="typeahead" name="name2" value="" autocomplete='off'> 
+         <input type="number" placeholder="Amount" class="input-small"
+        name="karma2" step="any" min="0" value="0.25"><br/> 
+        <input type="text" class="span6" placeholder="Reason" name="reason" autocomplete='off'>  <br />
+        <input type="text" placeholder="Commit hash" name="commit-hash" autocomplete='off'>  <br />
+        <input class="button btn-primary" type="submit" value="Submit" />
+    </form>
+</div>
+
+<form id="add-person" class="form-horizontal well plinkitytab" style="display: none;"
+action="/addperson">
+    <label>Name</label> <input type="text" name="name"> 
+    <input type="submit" class="btn btn-success" id="submit-add" value="Add"><br />
+</form>
+<form id="del-person" class="form-horizontal well plinkitytab" style="display: none;"
+action="/deleteperson" onsubmit="return confirm('Are you sure you want to delete this user?')">
+    <label>Name</label> <input type="text" name="name" class="typeahead"
+    autocomplete="off" data-provide="typeahead"> 
+    <input type="submit" class="btn btn-danger" id="submit-del" value="Delete"><br />
+</form>
+{% endblock %}
+{% block includejs %}
+<script src="../static/js/admin.js"></script>
+
+{% endblock %}

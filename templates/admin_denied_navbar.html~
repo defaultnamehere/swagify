@@ -1,0 +1,6 @@
+{% extends "navbar.html"}
+{% block btns %}
+<li id="btn-scoreboard" class=""><a href="{{ url_for('scoreboard') }}">Scoreboard</a></li>
+ <li id="btn-admin" class="active"><a href="{{ url_for('admin') }}">Admin</a></li>
+
+{% endblock %}

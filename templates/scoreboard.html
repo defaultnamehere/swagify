@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="../static/datatables/css/DT_bootstrap.css">
+{% endblock %}
+{% block container %}
+<h1>Scoreboard</h1>
+
+<table class='table' id='scoreboard'>
+    <thead>
+        <tr></tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+{% endblock %}
+
+{% block includejs %}
+<script src="../static/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../static/datatables/js/DT_bootstrap.js"></script>
+<script src="../static/js/scoreboard.js"></script>
+<script>
+function populateTable(data) {
+    $("#scoreboard > thead > tr").append("<td>Name</td><td>Karma</td>");
+    $.each(data, function(i, v) {
+        $("#scoreboard > tbody").append("<tr></tr>");
+        for (var k = 0; k < v.length; ++k) {
+            if (k == 0) {
+                // for name (first col), make it a link
+                v[k] = "<a href='/history/"+encodeURIComponent(v[k])+"'>"+v[k]+"</a>";
+            }
+            $("#scoreboard > tbody tr:last").append("<td>"+v[k]+"</td>");
+        }
+    });
+    DT_initialise("#scoreboard");
+    $.each($(".sorting_1"), function(index, value) {
+        var karma = parseFloat($(value).text());
+        if (karma >= 5) {
+            $(value).html("<span class='badge badge-success'>" + $(value).html() +"</span>")
+        }
+        else {
+            
+            $(value).html("<span class='badge badge-important'>" + $(value).html() +"</span>")
+        }
+     });
+
+}
+
+$(function() {
+    downloadKarmaData(populateTable);
+   });
+</script>
+{% endblock %}
