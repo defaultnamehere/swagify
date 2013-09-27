@@ -203,9 +203,14 @@ var swagify_page = function() {
 
 //do the things when the button is clicked
 $('.btn-submit').on('click', function () {
-
     swagify_page()
 
+});
+
+$('.swag-overflow').on('click', function() {
+
+    $swagified_text = $('.swagified');
+    $swagified_text.html(swagify($swagified_text.html()));
 });
 
 
