@@ -194,7 +194,10 @@ var swagify_page = function() {
     $('.swagified').html(swagify($phrase.val()));
 
     //also, let's change the button to say something else
-    $('.btn-submit').html(random_choice(button_names));
+    $('.btn-main').html(random_choice(button_names));
+
+    //also, let's add the swag overflow button 
+    $('.swag-overflow').removeClass('hidden');
 
 };
 
