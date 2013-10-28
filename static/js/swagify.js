@@ -1,13 +1,25 @@
 //TODO generate hashtags
-//TODO prefixes and suffixed (overflow, based, max)
-//TODO checkboxes to allow/deny decorations/tags
-//TODO allow each click to use the result of the previous click (plz no mode)
-//TODO play dubstep on button click? CSS animate text to pulse?
-//TODO decrease label width
+//TODO play dubstep on button click? CSS animate text to pulse? <--------- far too obnoxious
+
+//carefully scientifically determined probabilities
 var UPPERCASE_CHANCE = 0.5;
 var LETTER_REPLACE_CHANCE = 0.8;
-var USE_TAGS = true;
-var USE_DECORATIONS = true;
+var MAX_TAGS = 4
+
+
+var hashtags = [
+    'yoloono',
+    '3legit5quit',
+    'sweg',
+    'yoloswaggins',
+    'youonlyyoloonce',
+    'majorleagueblazing',
+    '420glazeitdonuts',
+    'watchout',
+    'lookbothwaysbeforeblazing',
+    'nofilter'
+
+];
 
 var slogans = [
     'Proudly sponsored by XBOX LIVE',
@@ -19,9 +31,10 @@ var slogans = [
     '"I use it every day." - Connor, 12, 420th prestige on BLOPS2',
     'Looks like a secure password. Isn\'t.',
     '[BREAKING] Swagify to be acquired by League of Legends, integrated into registration',
-    'Proudly sponsored by Mountain Dew'
+    'Proudly sponsored by Mountain Dew',
 
 ];
+
 var letter_replacements = {
     'S' : '$',
     'A' : '4',
@@ -57,7 +70,10 @@ var decorations = [
     '|420|',
     '.::',
     '.:',
-    '.-.'
+    '.-.',
+    '|||',
+    '--',
+    '*--'
 ];
 
 var tags = [
@@ -94,7 +110,13 @@ var tags = [
     'w33d',
     'ev REE DAI',
     'MTNDEW',
-    'DR0PTH3B4$$'
+    'DR0PTH3B4$$',
+    'WATCH OUT',
+    'EDGY',
+    'ACE DETECTIVE',
+    '90s KID',
+    'NO REGRETS',
+    'THANKS OBAMA'
 
 ];
 
@@ -117,11 +139,15 @@ var button_names = [
 ];
 
 var $phrase = $('.phrase');
+
 //initialize tooltips
+//okay bootstrap have it your way
 $('label.tags').tooltip();
 $('label.decorations').tooltip();
 $('label.swagoverflow').tooltip();
 
+
+// hi every1 my name is katy nd as u can see i am quite random! *holds up spork*
 var random_choice = function(list) {
     return list[Math.floor(Math.random()*list.length)]
 }
@@ -133,8 +159,8 @@ var decorate = function(s) {
 };
 
 var add_tags = function(s) {
-    var numtags = Math.floor(Math.random()*4); //use at most 3 tags. Any more would be too many.
-    //Actually, probably make this a dropdown so the user can choose
+    //between 0 and MAX_TAGS - 1 tags are added at the front
+    var numtags = Math.floor(Math.random()*(MAX_TAGS)); 
 
     for(var i = 0; i < numtags; i += 1) {
         s = '[' + random_choice(tags) + ']' + s;
@@ -155,7 +181,7 @@ var swagify = function(s) {
 
     var replacement;
 
-    //please jslint by using i+= 1
+    //wait what is this actually a for loops in js
     for (var i = 0; i < array.length; i += 1) {
         //if it's time to replace letters, do so
         if (Math.random() > LETTER_REPLACE_CHANCE) {
@@ -173,24 +199,20 @@ var swagify = function(s) {
     //               [x] not mutable
     s = array.join('');
 
-    //Check if the "Customize" panel has been used to modify the behaiviour.
-   
-
     //UM HELP I FORGET THE JQUERY FOR THI
     //USE_DECORATIONS = $('input#decorations').selected();
     //USE_TAGS= $('input#tags').checked();
-    if (USE_DECORATIONS) {
-        s = decorate(s);
-    }
-    if (USE_TAGS) {
-        s = add_tags(s);
-    }
+    
+    s = decorate(s);
+    s = add_tags(s);
+
     s = s.replace('le', '[le]'); //GOTTA do this
     return s;
 };
 
 var swagify_page = function() {
 
+    //I *guess* we'll HTML escape this, but really, this is all client side. If you're going to HTML inject, at a certain point the joke is on you.
     $('.swagified').html(swagify($phrase.val()));
 
     //also, let's change the button to say something else
@@ -207,6 +229,7 @@ $('.btn-submit').on('click', function () {
 
 });
 
+// enable swag overflow after the first click (I've created a monster)
 $('.swag-overflow').on('click', function() {
 
     $swagified_text = $('.swagified');
@@ -216,9 +239,8 @@ $('.swag-overflow').on('click', function() {
 
 //Also do the things when the user presses enter
 $('.swagify-form').submit(function(e) {
-
     swagify_page();
-    return false; // returning false prevents the form from submitting
+    return false; // returning false prevents the form from submitting suuuuuuuuuuuuuuuuuuuuuuuuuuuure js
 });
 
 //Generate a slogan
