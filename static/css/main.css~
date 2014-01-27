@@ -1,11 +1,3 @@
-
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
 .swagify-header {
     font-size : 100px !important;
     line-height: 100px;
@@ -30,14 +22,26 @@ input.phrase {
     display: block;
 }
 
-button.btn-submit {
+button.btn-block {
     width:300px;
     margin:0 auto;
 }
+div.swagify-buttons {
+    padding-top: 20px;
+}
 
 p.footer {
-    padding-top: 100px; /*I am bad at CSS. I'm no @taybenlor */
+    padding-top: 200px; /*I am bad at CSS. I'm no @taybenlor */
 }
+
+
+.dubstep {
+
+
+}
+
+
+
 
 
 

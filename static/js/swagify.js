@@ -1,9 +1,11 @@
 //TODO generate hashtags
 //TODO play dubstep on button click? CSS animate text to pulse? <--------- far too obnoxious
-
+//TODO literally redirect to xbox live
+//TODO randomly choose letters to replace by a triple letter, eg G -> GGG
 //carefully scientifically determined probabilities
 var UPPERCASE_CHANCE = 0.5;
 var LETTER_REPLACE_CHANCE = 0.8;
+var DUPLICATION_CHANCE = 0.05;
 var MAX_TAGS = 4
 
 
@@ -32,6 +34,7 @@ var slogans = [
     'Looks like a secure password. Isn\'t.',
     '[BREAKING] Swagify to be acquired by League of Legends, integrated into registration',
     'Proudly sponsored by Mountain Dew',
+    '4/20 doctors recommend blazing it regularly for a healthy gamerscore',
 
 ];
 
@@ -46,10 +49,10 @@ var letter_replacements = {
     's' : 'z',
     'z' : 'zzz',
     'Z' : 'ZZZ',
-    'E': '3',
     'g': 'ggg',
     'G': 'GGG',
-    'E' : '3'
+    'E' : '3',
+    'e' : '3'
 
 };
 
@@ -116,7 +119,8 @@ var tags = [
     'ACE DETECTIVE',
     '90s KID',
     'NO REGRETS',
-    'THANKS OBAMA'
+    'THANKS OBAMA',
+    '#nofilter'
 
 ];
 
@@ -137,6 +141,7 @@ var button_names = [
     'We need to go deeper'
 
 ];
+
 
 var $phrase = $('.phrase');
 
@@ -169,6 +174,7 @@ var add_tags = function(s) {
 
 }
 
+
 var randomise_case = function(letter) {
 
     return Math.random() > UPPERCASE_CHANCE ? letter.toUpperCase() : letter.toLowerCase();
@@ -181,7 +187,7 @@ var swagify = function(s) {
 
     var replacement;
 
-    //wait what is this actually a for loops in js
+    //wait what is this actually a for loop in js
     for (var i = 0; i < array.length; i += 1) {
         //if it's time to replace letters, do so
         if (Math.random() > LETTER_REPLACE_CHANCE) {
@@ -212,8 +218,14 @@ var swagify = function(s) {
 
 var swagify_page = function() {
 
+    var name = $phrase.val();
+
+    if (!name) {
+        name = 'gaben';
+    }
+
     //I *guess* we'll HTML escape this, but really, this is all client side. If you're going to HTML inject, at a certain point the joke is on you.
-    $('.swagified').html(swagify($phrase.val()));
+    $('.swagified').html(swagify(name));
 
     //also, let's change the button to say something else
     $('.btn-main').html(random_choice(button_names));
@@ -234,11 +246,14 @@ $('.swag-overflow').on('click', function() {
 
     $swagified_text = $('.swagified');
     $swagified_text.html(swagify($swagified_text.html()));
+
+    //add a class to make the text have MAXIMUM swag.
+    $swagified_text.addClass("dubstep");
 });
 
 
 //Also do the things when the user presses enter
-$('.swagify-form').submit(function(e) {
+$('.form-control').submit(function(e) {
     swagify_page();
     return false; // returning false prevents the form from submitting suuuuuuuuuuuuuuuuuuuuuuuuuuuure js
 });

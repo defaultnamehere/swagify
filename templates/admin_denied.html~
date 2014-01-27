@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% block navbar %}
-    {% include "navbar.html" %}
-{% endblock %}
-{% block container %}
-    {% include "admin_denied_container.html" %}
-{% endblock %}
