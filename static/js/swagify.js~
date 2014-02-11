@@ -2,6 +2,7 @@
 //TODO play dubstep on button click? CSS animate text to pulse? <--------- far too obnoxious
 //TODO literally redirect to xbox live
 //TODO randomly choose letters to replace by a triple letter, eg G -> GGG
+
 //carefully scientifically determined probabilities
 var UPPERCASE_CHANCE = 0.5;
 var LETTER_REPLACE_CHANCE = 0.8;
@@ -9,6 +10,9 @@ var DUPLICATION_CHANCE = 0.05;
 var MAX_TAGS = 4
 
 
+
+//OH DAMN YOU FOUND A SECRET UNIMPLEMENTED FEATURE
+//PLEASE DIRECT YOUR BROWSER TO http://gabegaming.com to collect your reward
 var hashtags = [
     'yoloono',
     '3legit5quit',
@@ -63,6 +67,7 @@ var decorations = [
     '~',
     '.-~',
     'xXx',
+    'XxX',
     'xxX_',
     '|',
     './|',
@@ -76,7 +81,7 @@ var decorations = [
     '.-.',
     '|||',
     '--',
-    '*--'
+    '*--',
 ];
 
 var tags = [
@@ -138,7 +143,12 @@ var button_names = [
     'C4rpe YOLO',
     'YOU ONLY YOLO ONCE',
     'I need a YouTube account name for my first Minecraft video',
-    'We need to go deeper'
+    '#swagallday',
+    '#swagallnight',
+    'Watch out r/gaming',
+    'Generate and order me a 12 pack of Mountain Dew',
+    'Major League Blazing',
+    'Strictly 90s kids only past this point - click here to be a 90s kid'
 
 ];
 
@@ -154,6 +164,7 @@ $('label.swagoverflow').tooltip();
 
 // hi every1 my name is katy nd as u can see i am quite random! *holds up spork*
 var random_choice = function(list) {
+    //srsly though why do I have to implement this :|
     return list[Math.floor(Math.random()*list.length)]
 }
 
@@ -205,10 +216,6 @@ var swagify = function(s) {
     //               [x] not mutable
     s = array.join('');
 
-    //UM HELP I FORGET THE JQUERY FOR THI
-    //USE_DECORATIONS = $('input#decorations').selected();
-    //USE_TAGS= $('input#tags').checked();
-    
     s = decorate(s);
     s = add_tags(s);
 
@@ -225,7 +232,14 @@ var swagify_page = function() {
     }
 
     //I *guess* we'll HTML escape this, but really, this is all client side. If you're going to HTML inject, at a certain point the joke is on you.
-    $('.swagified').html(swagify(name));
+    $('.swagified').text(swagify(name));
+
+
+    //lol pwnt lol ownage straight to the fronpage of r/learntohack
+    if (name.search("<script>") != -1 ) {
+        alert("XSS successful, please direct your browser to gabegaming.com to claim your reward.");
+        window.location = "http://gabegaming.com";
+    }
 
     //also, let's change the button to say something else
     $('.btn-main').html(random_choice(button_names));
@@ -253,7 +267,7 @@ $('.swag-overflow').on('click', function() {
 
 
 //Also do the things when the user presses enter
-$('.swagify-form').submit(function(e) {
+$('.form-control').submit(function(e) {
     swagify_page();
     return false; // returning false prevents the form from submitting suuuuuuuuuuuuuuuuuuuuuuuuuuuure js
 });
