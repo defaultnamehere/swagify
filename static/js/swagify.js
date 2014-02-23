@@ -1,32 +1,16 @@
-//TODO generate hashtags
-//TODO play dubstep on button click? CSS animate text to pulse? <--------- far too obnoxious
 //TODO literally redirect to xbox live
-//TODO randomly choose letters to replace by a triple letter, eg G -> GGG
+//TODO swagify API
 
 //carefully scientifically determined probabilities
 var UPPERCASE_CHANCE = 0.5;
 var LETTER_REPLACE_CHANCE = 0.8;
-var DUPLICATION_CHANCE = 0.05;
-var MAX_TAGS = 4
+var TRIPLE_CHANCE = 0.2;
 
+var MAX_TAGS = 4;
 
-
-//OH DAMN YOU FOUND A SECRET UNIMPLEMENTED FEATURE
-//PLEASE DIRECT YOUR BROWSER TO http://gabegaming.com to collect your reward
-var hashtags = [
-    'yoloono',
-    '3legit5quit',
-    'sweg',
-    'yoloswaggins',
-    'youonlyyoloonce',
-    'majorleagueblazing',
-    '420glazeitdonuts',
-    'watchout',
-    'lookbothwaysbeforeblazing',
-    'nofilter'
-
-];
-
+//>var
+//>global by default
+//>js
 var slogans = [
     'Proudly sponsored by XBOX LIVE',
     'Because being L3G1TZ is hard',
@@ -39,93 +23,6 @@ var slogans = [
     '[BREAKING] Swagify to be acquired by League of Legends, integrated into registration',
     'Proudly sponsored by Mountain Dew',
     '4/20 doctors recommend blazing it regularly for a healthy gamerscore',
-
-];
-
-var letter_replacements = {
-    'S' : '$',
-    'A' : '4',
-    'a': '@',
-    'l' : '1',
-    'i' : '1',
-    'I' : '1', //chaos
-    'o' : '0',
-    's' : 'z',
-    'z' : 'zzz',
-    'Z' : 'ZZZ',
-    'g': 'ggg',
-    'G': 'GGG',
-    'E' : '3',
-    'e' : '3'
-
-};
-
-var decorations = [
-    'xX',
-    'xxx',
-    '!',
-    '~',
-    '.-~',
-    'xXx',
-    'XxX',
-    'xxX_',
-    '|',
-    './|',
-    '@@@',
-    '$$$',
-    '***',
-    '+',
-    '|420|',
-    '.::',
-    '.:',
-    '.-.',
-    '|||',
-    '--',
-    '*--',
-];
-
-var tags = [
-    'SHOTS FIRED',
-    '420',
-    'LEGIT',
-    '360',
-    'Pr0',
-    'NO$$$cop3z',
-    '0SC0pe',
-    'MLG',
-    'h4xx0r',
-    'M4X$W4G',
-    'L3G1TZ',
-    '3edgy5u',
-    '2edgy4u',
-    'nedgy(n+2)u',
-    's0b4s3d',
-    'SWEG',
-    'LEGIT',
-    'WUBWUBWUB',
-    'BLAZEIT',
-    'b14Z3d',
-    '[le]G1t',
-    '60x7',
-    '24x7BLAZEIT',
-    '4.2*10^2',
-    'literally',
-    '[le]terally',
-    '1337',
-    'l33t',
-    '31337',
-    'Tr1Ck$h0t',
-    'w33d',
-    'ev REE DAI',
-    'MTNDEW',
-    'DR0PTH3B4$$',
-    'WATCH OUT',
-    'EDGY',
-    'ACE DETECTIVE',
-    '90s KID',
-    'NO REGRETS',
-    'THANKS OBAMA',
-    '#nofilter'
 
 ];
 
@@ -154,13 +51,9 @@ var button_names = [
 
 
 var $phrase = $('.phrase');
-
-//initialize tooltips
-//okay bootstrap have it your way
-$('label.tags').tooltip();
-$('label.decorations').tooltip();
-$('label.swagoverflow').tooltip();
-
+$('button.swag-overflow').tooltip({
+    'placement': 'right'
+});
 
 // hi every1 my name is katy nd as u can see i am quite random! *holds up spork*
 var random_choice = function(list) {
@@ -168,53 +61,154 @@ var random_choice = function(list) {
     return list[Math.floor(Math.random()*list.length)]
 }
 
-var decorate = function(s) {
-    var decoration = random_choice(decorations);
-    return decoration + s + decoration.split('').reverse().join(''); //yeah okay js
-
-};
-
-var add_tags = function(s) {
-    //between 0 and MAX_TAGS - 1 tags are added at the front
-    var numtags = Math.floor(Math.random()*(MAX_TAGS)); 
-
-    for(var i = 0; i < numtags; i += 1) {
-        s = '[' + random_choice(tags) + ']' + s;
-    }
-    return s;
-
-}
-
-
-var randomise_case = function(letter) {
-
-    return Math.random() > UPPERCASE_CHANCE ? letter.toUpperCase() : letter.toLowerCase();
-};
-
 var swagify = function(s) {
 
+    var letter_replacements = {
+        'S' : '$',
+        'A' : '4',
+        'a': '@',
+        'l' : '1',
+        'i' : '1',
+        'I' : '1', //chaos
+        'o' : '0',
+        's' : 'z',
+        'z' : 'zzz',
+        'Z' : 'ZZZ',
+        'g': 'ggg',
+        'G': 'GGG',
+        'E' : '3',
+        'e' : '3'
+
+    };
+
+    var decorations = [
+        'xX',
+        'xxx',
+        '!',
+        '~',
+        '.-~',
+        'xXx',
+        'XxX',
+        'xxX_',
+        '|',
+        './|',
+        '@@@',
+        '$$$',
+        '***',
+        '+',
+        '|420|',
+        '.::',
+        '.:',
+        '.-.',
+        '|||',
+        '--',
+        '*--',
+    ];
+
+    var tags = [
+        'SHOTS FIRED',
+        '420',
+        'LEGIT',
+        '360',
+        'Pr0',
+        'NO$$$cop3z',
+        '0SC0pe',
+        'MLG',
+        'h4xx0r',
+        'M4X$W4G',
+        'L3G1TZ',
+        '3edgy5u',
+        '2edgy4u',
+        'nedgy(n+2)u',
+        's0b4s3d',
+        'SWEG',
+        'LEGIT',
+        'WUBWUBWUB',
+        'BLAZEIT',
+        'b14Z3d',
+        '[le]G1t',
+        '60x7',
+        '24x7BLAZEIT',
+        '4.2*10^2',
+        'literally',
+        '[le]terally',
+        '1337',
+        'l33t',
+        '31337',
+        'Tr1Ck$h0t',
+        'w33d',
+        'ev REE DAI',
+        'MTNDEW',
+        'DR0PTH3B4$$',
+        'WATCH OUT',
+        'EDGY',
+        'ACE DETECTIVE',
+        '90s KID',
+        'NO REGRETS',
+        'THANKS OBAMA',
+        '#nofilter'
+
+    ];
+
+    var decorate = function(s) {
+        var decoration = random_choice(decorations);
+        return decoration + s + decoration.split('').reverse().join(''); //yeah okay js
+
+    };
+
+    var add_tags = function(s) {
+        //between 0 and MAX_TAGS - 1 tags are added at the front
+        var numtags = Math.floor(Math.random()*(MAX_TAGS)); 
+
+        for(var i = 0; i < numtags; i += 1) {
+            s = '[' + random_choice(tags) + ']' + s;
+        }
+        return s;
+
+    }
+
+    var randomise_case = function(letter) {
+
+        return Math.random() < UPPERCASE_CHANCE ? letter.toUpperCase() : letter.toLowerCase();
+    };
+
     //you can split on the empty string in js okay then
-    var array = s.split(''); 
+    var swag_array = s.split(''); 
 
     var replacement;
 
     //wait what is this actually a for loop in js
-    for (var i = 0; i < array.length; i += 1) {
+    for (var i = 0; i < swag_array.length; i += 1) {
         //if it's time to replace letters, do so
-        if (Math.random() > LETTER_REPLACE_CHANCE) {
-            replacement = letter_replacements[array[i]];
+        if (Math.random() < LETTER_REPLACE_CHANCE) {
+            replacement = letter_replacements[swag_array[i]];
             //KeyErrors? Don't be ridiculous. This is js.
             if (replacement) {
-                array[i] = letter_replacements[array[i]];
+                swag_array[i] = letter_replacements[swag_array[i]];
             }
         }
         //randomize the case EVEN AFTER WE REPLACED? SOMEBODY STOP ME
-        array[i] = randomise_case(array[i]);
+        swag_array[i] = randomise_case(swag_array[i]);
     }
+
+    //Now, at most once, replace a letter with that letter 3 times. Y'know, like they do ON THE STREETS.
+    if (Math.random() < TRIPLE_CHANCE) {
+
+        triple_index = Math.floor(Math.random() * swag_array.length);
+        letter = swag_array[triple_index];
+        triple_letter = ""
+
+        // What even is this wacky code how do you multiply strings in js guido save me
+        for (var i = 0; i < 3; i++) {
+            triple_letter += letter
+        }
+        swag_array[triple_index] = triple_letter
+    }
+
 
     //string status: [ ] mutable
     //               [x] not mutable
-    s = array.join('');
+    s = swag_array.join('');
 
     s = decorate(s);
     s = add_tags(s);
@@ -228,15 +222,16 @@ var swagify_page = function() {
     var name = $phrase.val();
 
     if (!name) {
-        name = 'gaben';
+        return
     }
 
-    //I *guess* we'll HTML escape this, but really, this is all client side. If you're going to HTML inject, at a certain point the joke is on you.
+    // I *guess* we'll escape this, but really, this is all client side.
+    // If you're going to HTML inject, at a certain point the joke is on you.
     $('.swagified').text(swagify(name));
 
     //lol pwnt lol ownage straight to the fronpage of r/learntohack
     if (name.search("<script>") != -1 ) {
-        alert("XSS successful, please direct your browser to gabegaming.com to claim your reward.");
+        alert("XSS successful, please direct your browser to http://gabegaming.com to claim your reward.");
         window.location = "http://gabegaming.com";
     }
 
@@ -249,9 +244,10 @@ var swagify_page = function() {
 };
 
 //do the things when the button is clicked
+//("do the things"
+//>documentation)
 $('.btn-submit').on('click', function () {
     swagify_page()
-
 });
 
 // enable swag overflow after the first click (I've created a monster)
@@ -260,10 +256,7 @@ $('.swag-overflow').on('click', function() {
     $swagified_text = $('.swagified');
     $swagified_text.html(swagify($swagified_text.html()));
 
-    //add a class to make the text have MAXIMUM swag.
-    $swagified_text.addClass("dubstep");
 });
-
 
 //Also do the things when the user presses enter
 $('.form-control').submit(function(e) {
