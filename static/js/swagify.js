@@ -1,5 +1,6 @@
 //TODO literally redirect to xbox live
 //TODO swagify API
+//TODO Don't triple letter if adjacent letters are the same.
 
 //carefully scientifically determined probabilities
 var UPPERCASE_CHANCE = 0.5;
@@ -22,7 +23,7 @@ var slogans = [
     'Looks like a secure password. Isn\'t.',
     '[BREAKING] Swagify to be acquired by League of Legends, integrated into registration',
     'Proudly sponsored by Mountain Dew',
-    '4/20 doctors recommend blazing it regularly for a healthy gamerscore',
+    '4/20 doctors recommend blazing it regularly for a healthy gamerscore', // leaving the extra comma at the end #yolo #js
 
 ];
 
@@ -77,7 +78,11 @@ var swagify = function(s) {
         'g': 'ggg',
         'G': 'GGG',
         'E' : '3',
-        'e' : '3'
+        'e' : '3',
+        's': '$',
+        't' : '+',
+        'n' : '^',
+        'D' : '|)',
 
     };
 

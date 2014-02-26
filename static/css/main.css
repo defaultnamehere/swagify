@@ -1,3 +1,11 @@
+body {
+    color: white;
+    background-color: #333333;
+}
+input {
+    background-color: #333333 !important;
+}
+
 .swagify-header {
     font-size : 100px !important;
     line-height: 100px;
