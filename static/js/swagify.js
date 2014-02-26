@@ -1,6 +1,7 @@
 //TODO literally redirect to xbox live
 //TODO swagify API
 //TODO Don't triple letter if adjacent letters are the same.
+//TODO Tweet button, with tooltip "yeah right, like that's going to fit in 140 characters. Do it yourself."""
 
 //carefully scientifically determined probabilities
 var UPPERCASE_CHANCE = 0.5;
@@ -231,7 +232,7 @@ var swagify_page = function() {
     }
 
     // I *guess* we'll escape this, but really, this is all client side.
-    // If you're going to HTML inject, at a certain point the joke is on you.
+    // If you're going to try and XSS this, at a certain point the joke is on you.
     $('.swagified').text(swagify(name));
 
     //lol pwnt lol ownage straight to the fronpage of r/learntohack
