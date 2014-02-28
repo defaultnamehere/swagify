@@ -3,6 +3,7 @@
 //TODO Don't triple letter if adjacent letters are the same.
 //TODO Tweet button, with tooltip "yeah right, like that's going to fit in 140 characters. Do it yourself."""
 
+
 //carefully scientifically determined probabilities
 var UPPERCASE_CHANCE = 0.5;
 var LETTER_REPLACE_CHANCE = 0.8;
