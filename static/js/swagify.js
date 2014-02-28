@@ -174,7 +174,6 @@ var swagify = function(s) {
     }
 
     var randomise_case = function(letter) {
-
         return Math.random() < UPPERCASE_CHANCE ? letter.toUpperCase() : letter.toLowerCase();
     };
 
