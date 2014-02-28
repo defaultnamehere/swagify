@@ -236,7 +236,7 @@ var swagify_page = function() {
     //lol pwnt lol ownage straight to the fronpage of r/learntohack
     if (name.search("<script>") != -1 ) {
         alert("XSS successful, please direct your browser to http://gabegaming.com to claim your reward.");
-        window.location.replace("http://gabegaming.com");
+        window.location = "http://gabegaming.com/";
     }
 
     //also, let's change the button to say something else
