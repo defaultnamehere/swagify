@@ -1,5 +1,4 @@
 //TODO literally redirect to xbox live
-//TODO swagify API
 //TODO Don't triple letter if adjacent letters are the same.
 //TODO Tweet button, with tooltip "yeah right, like that's going to fit in 140 characters. Do it yourself."""
 
