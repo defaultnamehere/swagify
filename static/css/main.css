@@ -26,8 +26,8 @@ h1.swagified {
     padding-top:50px;
 }
 input.phrase {
-
     display: block;
+    height: initial;
 }
 
 button.btn-block {
