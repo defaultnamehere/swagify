@@ -252,6 +252,7 @@ var swagify_page = function() {
 //>documentation)
 $('.btn-submit').on('click', function () {
     swagify_page()
+    return false; // >js
 });
 
 // enable swag overflow after the first click (I've created a monster)
@@ -264,6 +265,7 @@ $('.swag-overflow').on('click', function() {
 
 //Also do the things when the user presses enter
 $('.form-control').submit(function(e) {
+    e.preventDefault()
     swagify_page();
     return false; // returning false prevents the form from submitting suuuuuuuuuuuuuuuuuuuuuuuuuuuure js
 });
