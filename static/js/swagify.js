@@ -1,11 +1,11 @@
 //TODO literally redirect to xbox live
-//TODO Don't triple letter if adjacent letters are the same.
 //TODO Tweet button, with tooltip "yeah right, like that's going to fit in 140 characters. Do it yourself."""
 
-//carefully scientifically determined probabilities
+
+// Years of research in a Doritos lab yielded these probabilities.
 var UPPERCASE_CHANCE = 0.5;
 var LETTER_REPLACE_CHANCE = 0.8;
-var TRIPLE_CHANCE = 0.2;
+var TRIPLE_CHANCE = 0.1;
 
 var MAX_TAGS = 4;
 
@@ -14,16 +14,19 @@ var MAX_TAGS = 4;
 //>js
 var slogans = [
     'Proudly sponsored by XBOX LIVE',
-    'Because being L3G1TZ is hard',
-    'For the S|<r1pT |<1DDi3 with no time to spare',
+    'For the sik lad with no time to spare',
     'Because you\'re worth it',
     'WUBWUBWUB',
-    '...Just in case',
-    '"I use it every day." - Connor, 12, 420th prestige on BLOPS2',
-    'Looks like a secure password. Isn\'t.',
+    '"I use it every day." - Connor, 12, 420th prestige on CODBLOPS2',
     '[BREAKING] Swagify to be acquired by League of Legends, integrated into registration',
     'Proudly sponsored by Mountain Dew',
-    '4/20 doctors recommend blazing it regularly for a healthy gamerscore', // leaving the extra comma at the end #yolo #js
+    '4/20 doctors recommend blazing it regularly for a healthy gamerscore',
+    'SAMPLE TEXT',
+    'M\'lady',
+    'Your home for dank memes',
+    'Thanks to Doritos for the generous donations which made Swagify possible',
+    'Faze clan consider this website my application',
+    '"10/10, it\'s okay" - IGN',
 
 ];
 
@@ -37,7 +40,6 @@ var button_names = [
     'Generate and register for XBOX live',
     '[literally] $$$$$$$$$$WAGIFY',
     'TR1p[le] $w@g',
-    'Y010',
     'C4rpe YOLO',
     'YOU ONLY YOLO ONCE',
     'I need a YouTube account name for my first Minecraft video',
@@ -46,20 +48,30 @@ var button_names = [
     'Watch out r/gaming',
     'Generate and order me a 12 pack of Mountain Dew',
     'Major League Blazing',
-    'Strictly 90s kids only past this point - click here to be a 90s kid'
-
+    'Strictly 90s kids only past this point - click here to be a 90s kid',
+    'SAMPLE TEXT',
+    'DID YOU SEE IT?',
+    'Take me to the Club Penguin sign up page',
+    ''
 ];
 
-
+// Slap on those tooltips.
 var $phrase = $('.phrase');
 $('button.swag-overflow').tooltip({
     'placement': 'right'
 });
 
 // hi every1 my name is katy nd as u can see i am quite random! *holds up spork*
-var random_choice = function(list) {
-    //srsly though why do I have to implement this :|
+function random_choice(list) {
     return list[Math.floor(Math.random()*list.length)]
+}
+function randInt(min, max) {
+    return min + Math.floor(Math.random() * max);
+}
+
+function showRandomSlogan() {
+    //Generate a slogan
+    $('.slogan').text(random_choice(slogans));
 }
 
 var swagify = function(s) {
@@ -73,6 +85,7 @@ var swagify = function(s) {
         'I' : '1', //chaos
         'o' : '0',
         's' : 'z',
+        'H' : "#",
         'z' : 'zzz',
         'Z' : 'ZZZ',
         'g': 'ggg',
@@ -81,21 +94,20 @@ var swagify = function(s) {
         'e' : '3',
         's': '$',
         't' : '+',
-        'n' : '^',
         'D' : '|)',
 
     };
 
     var decorations = [
+        'x',
+        'X',
         'xX',
         'xxx',
-        '!',
         '~',
         '.-~',
         'xXx',
         'XxX',
         'xxX_',
-        '|',
         './|',
         '@@@',
         '$$$',
@@ -114,18 +126,13 @@ var swagify = function(s) {
         'SHOTS FIRED',
         '420',
         'LEGIT',
-        '360',
-        'Pr0',
         'NO$$$cop3z',
         '0SC0pe',
         'MLG',
-        'h4xx0r',
         'M4X$W4G',
-        'L3G1TZ',
         '3edgy5u',
         '2edgy4u',
         'nedgy(n+2)u',
-        's0b4s3d',
         'SWEG',
         'LEGIT',
         'WUBWUBWUB',
@@ -141,28 +148,28 @@ var swagify = function(s) {
         'l33t',
         '31337',
         'Tr1Ck$h0t',
-        'w33d',
-        'ev REE DAI',
+        'SCRUBLORD',
         'MTNDEW',
         'DR0PTH3B4$$',
-        'WATCH OUT',
         'EDGY',
         'ACE DETECTIVE',
         '90s KID',
         'NO REGRETS',
         'THANKS OBAMA',
-        '#nofilter'
+        'SAMPLE TEXT',
+        'FAZE'
 
     ];
 
     var decorate = function(s) {
         var decoration = random_choice(decorations);
-        return decoration + s + decoration.split('').reverse().join(''); //yeah okay js
+        // Yeah okay js.
+        return decoration + s + decoration.split('').reverse().join(''); 
 
     };
 
     var add_tags = function(s) {
-        //between 0 and MAX_TAGS - 1 tags are added at the front
+        // Between 0 and MAX_TAGS - 1 tags are added at the front.
         var numtags = Math.floor(Math.random()*(MAX_TAGS)); 
 
         for(var i = 0; i < numtags; i += 1) {
@@ -181,9 +188,9 @@ var swagify = function(s) {
 
     var replacement;
 
-    //wait what is this actually a for loop in js
+    //wait what is this actually a for loop in js i don't get it needs more jQuery plugins
     for (var i = 0; i < swag_array.length; i += 1) {
-        //if it's time to replace letters, do so
+
         if (Math.random() < LETTER_REPLACE_CHANCE) {
             replacement = letter_replacements[swag_array[i]];
             //KeyErrors? Don't be ridiculous. This is js.
@@ -195,14 +202,14 @@ var swagify = function(s) {
         swag_array[i] = randomise_case(swag_array[i]);
     }
 
-    //Now, at most once, replace a letter with that letter 3 times. Y'know, like they do ON THE STREETS.
+    // At most once, replace a letter with that letter 3 times. Y'know, like they do ON THE STREETS.
     if (Math.random() < TRIPLE_CHANCE) {
 
         triple_index = Math.floor(Math.random() * swag_array.length);
         letter = swag_array[triple_index];
-        triple_letter = ""
+        triple_letter = "";
 
-        // What even is this wacky code how do you multiply strings in js guido save me
+        // What even is this wacky code how do you multiply strings in js guido save me (reddit.com/r/basedguido)
         for (var i = 0; i < 3; i++) {
             triple_letter += letter
         }
@@ -217,7 +224,6 @@ var swagify = function(s) {
     s = decorate(s);
     s = add_tags(s);
 
-    s = s.replace('le', '[le]'); //GOTTA do this
     return s;
 };
 
@@ -226,7 +232,7 @@ var swagify_page = function() {
     var name = $phrase.val();
 
     if (!name) {
-        return
+        return;
     }
 
     // I *guess* we'll escape this, but really, this is all client side.
@@ -239,23 +245,66 @@ var swagify_page = function() {
         window.location = "http://gabegaming.com/";
     }
 
-    //also, let's change the button to say something else
+    // change the button to say something else
     $('.btn-main').html(random_choice(button_names));
 
-    //also, let's add the swag overflow button 
-    $('.swag-overflow').removeClass('hidden');
+    // Show the swag overflow button 
+    //$('.swag-overflow').removeClass('hidden');
 
 };
+
+var mouseX;
+var mouseY;
+$('.btn-submit').on("click", function(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    console.log(mouseX);
+    console.log(mouseY);
+});
+
+function place_hitmarker(e) {
+    $swagifyButton = $('button.btn-swagify');
+
+    // Change cursor to hitmarker.
+    $swagifyButton.addClass("cursor-hitmarker");
+    // Play the sound.
+    $("audio.hitmarker").trigger("play");
+
+    // Change it back.
+    window.setTimeout(
+            function() {
+        $('button.btn-swagify').removeClass("cursor-hitmarker");
+    },
+    150)
+
+
+}
 
 //do the things when the button is clicked
 //("do the things"
 //>documentation)
-$('.btn-submit').on('click', function () {
-    swagify_page()
-    return false; // >js
+$('.btn-submit').on('click', function (e) {
+    swagify_page();
+    place_hitmarker(e);
+    $('img.frog').show();
+
+    $("img.frog").animate({
+        left: 100,
+        }, 1000, function() {
+        // Animation complete.
+    });
+    return false;
 });
 
-// enable swag overflow after the first click (I've created a monster)
+/*
+ * Flip the frog so it always faces forward. It currently looks hilarious without it.
+$('img.frog').one('webkitAnimationIteration oanimationiteration msAnimationIteration animationiteration', 
+        function(e) {
+            $('img.frog').toggleClass("flipped");
+});
+*/
+
+// Enable swag overflow after the first click (I've created a monster)
 $('.swag-overflow').on('click', function() {
 
     $swagified_text = $('.swagified');
@@ -263,12 +312,23 @@ $('.swag-overflow').on('click', function() {
 
 });
 
-//Also do the things when the user presses enter
+// Also do the things when the user presses enter
 $('.form-control').submit(function(e) {
     e.preventDefault()
     swagify_page();
-    return false; // returning false prevents the form from submitting suuuuuuuuuuuuuuuuuuuuuuuuuuuure js
+    return false; 
 });
 
-//Generate a slogan
-$('.swagified').text(random_choice(slogans));
+// Randomly every few seconds, flash the illuminati logo fullscreen.
+window.setInterval(function() {
+    var $symbol = $('div.illuminati');
+    $symbol.toggleClass("hidden");
+    window.setTimeout(function() {
+        $symbol.toggleClass("hidden");
+    }, 700);
+
+    }, randInt(3, 30) * 1000);
+
+showRandomSlogan();
+
+// Dank memes complete have a based day
