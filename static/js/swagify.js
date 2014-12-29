@@ -32,14 +32,12 @@ var slogans = [
 
 var button_names = [
     '$wag1fy',
-    'ENGAG3_$w4gggER',
     'Please apply swagger to this text',
     '$$$',
     'BL4z3 1T',
     'I\'d like a name for League of Legends',
     'Generate and register for XBOX live',
     '[literally] $$$$$$$$$$WAGIFY',
-    'TR1p[le] $w@g',
     'C4rpe YOLO',
     'YOU ONLY YOLO ONCE',
     'I need a YouTube account name for my first Minecraft video',
@@ -50,9 +48,7 @@ var button_names = [
     'Major League Blazing',
     'Strictly 90s kids only past this point - click here to be a 90s kid',
     'SAMPLE TEXT',
-    'DID YOU SEE IT?',
     'Take me to the Club Penguin sign up page',
-    ''
 ];
 
 // Slap on those tooltips.
@@ -255,12 +251,6 @@ var swagify_page = function() {
 
 var mouseX;
 var mouseY;
-$('.btn-submit').on("click", function(e) {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    console.log(mouseX);
-    console.log(mouseY);
-});
 
 function place_hitmarker(e) {
     $swagifyButton = $('button.btn-swagify');
@@ -275,7 +265,7 @@ function place_hitmarker(e) {
             function() {
         $('button.btn-swagify').removeClass("cursor-hitmarker");
     },
-    150)
+    200)
 
 
 }
@@ -293,6 +283,12 @@ $('.btn-submit').on('click', function (e) {
         }, 1000, function() {
         // Animation complete.
     });
+
+    // Show the explosions once only.
+    $("img.explosion").toggleClass("hidden");
+    window.setTimeout(function() {
+        $("img.explosion").toggleClass("hidden");
+    }, 800);
     return false;
 });
 
@@ -319,15 +315,17 @@ $('.form-control').submit(function(e) {
     return false; 
 });
 
+illuminatiTimeout = rantInt(3, 30) * 1000;
 // Randomly every few seconds, flash the illuminati logo fullscreen.
 window.setInterval(function() {
     var $symbol = $('div.illuminati');
     $symbol.toggleClass("hidden");
     window.setTimeout(function() {
         $symbol.toggleClass("hidden");
-    }, 700);
+    }, 200);
 
-    }, randInt(3, 30) * 1000);
+    illuminatiTimeout = randInt(3, 30) * 1000;
+    }, illuminatiTimeout);
 
 showRandomSlogan();
 
