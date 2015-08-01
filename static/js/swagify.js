@@ -172,7 +172,7 @@ var swagify = function(s) {
         'NO REGRETS',
         'THANKS OBAMA',
         'SAMPLE TEXT',
-        'FAZE'
+        'FAZE',
         '#nofilter'
 
     ];
@@ -185,7 +185,6 @@ var swagify = function(s) {
     };
 
     var add_tags = function(s) {
-<<<<<<< HEAD
         // Between 0 and MAX_TAGS - 1 tags are added at the front.
         var numtags = Math.floor(Math.random()*(MAX_TAGS)); 
 
