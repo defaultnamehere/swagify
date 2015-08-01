@@ -315,7 +315,7 @@ $('.form-control').submit(function(e) {
     return false; 
 });
 
-illuminatiTimeout = rantInt(3, 30) * 1000;
+illuminatiTimeout = randInt(3, 30) * 1000;
 // Randomly every few seconds, flash the illuminati logo fullscreen.
 window.setInterval(function() {
     var $symbol = $('div.illuminati');
