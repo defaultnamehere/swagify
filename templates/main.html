@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+<div class="container">
+    <h1 class="swagify-header text-center">Swagify</h1>
+</div>
+<div >
+        <h1 class="swagified text-center "></h1>
+</div>
+<div class="container  form-horizontal swagify-form-div">
+    <form class="swagify-form " action="#">
+        <input type="text" class="phrase input-block-level" placeholder="Username you want swagified goes here"/>
+        <div class="swagify-buttons">
+            <!-- #btn-overflow -->
+            <button type="button " class="btn btn-block btn-main btn-submit btn-primary btn-large btn-swagify" >$w@g1fy</button>
+            <button type="button" class=" btn btn-block btn-info btn-large swag-overflow hidden" data-toggle="tooltip" title="Take the result of the previous swaggification and swagify THAT." >$w@g1fy that again</button>
+        </div>
+    </form>
+
+</div>
+<br>
+
+<p class="muted footer text-center" >Swagify makes it easy to earn the respect of your peers as you sign up to XBOX LIVE and the like for the first time. All the other kids are doing it. Try typing in a username you might use to register on a website. Or your real name. Or someone else's name.</p>
+<p class="muted text-center">The slogan, button text, and Swagifications (tm) are all randomly generated. You can look at the <a href="../static/js/swagify.js">JavaScript</a> if you want to. </p>
+<p class="muted  text-center"> I made this because I thought it would be funny. You can talk to me about it if you want. <a href="https://twitter.com/_notlikethis">@_notlikethis</a>
+
+</p>
+<p class="muted text-center"> Credit to Ollie Hogue, 12 for the idea.</p>
+</div>
+
+
+{% endblock %}

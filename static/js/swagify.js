@@ -1,5 +1,3 @@
-//TODO literally redirect to xbox live
-//TODO Tweet button, with tooltip "yeah right, like that's going to fit in 140 characters. Do it yourself."""
 
 
 // Years of research in a Doritos lab yielded these probabilities.
@@ -27,17 +25,30 @@ var slogans = [
     'Thanks to Doritos for the generous donations which made Swagify possible',
     'Faze clan consider this website my application',
     '"10/10, it\'s okay" - IGN',
+    'Because being L3G1TZ is hard',
+    'For the S|<r1pT |<1DDi3 with no time to spare',
+    'Because you\'re worth it',
+    'WUBWUBWUB',
+    '...Just in case',
+    '"I use it every day." - Connor, 12, 420th prestige on BLOPS2',
+    'Looks like a secure password. Isn\'t.',
+    '[BREAKING] Swagify to be acquired by League of Legends, integrated into registration',
+    'Proudly sponsored by Mountain Dew',
+    '4/20 doctors recommend blazing it regularly for a healthy gamerscore', // leaving the extra comma at the end #yolo #js
 
 ];
 
 var button_names = [
     '$wag1fy',
+    'ENGAG3_$w4gggER',
     'Please apply swagger to this text',
     '$$$',
     'BL4z3 1T',
     'I\'d like a name for League of Legends',
     'Generate and register for XBOX live',
     '[literally] $$$$$$$$$$WAGIFY',
+    'TR1p[le] $w@g',
+    'Y010',
     'C4rpe YOLO',
     'YOU ONLY YOLO ONCE',
     'I need a YouTube account name for my first Minecraft video',
@@ -51,7 +62,6 @@ var button_names = [
     'Take me to the Club Penguin sign up page',
 ];
 
-// Slap on those tooltips.
 var $phrase = $('.phrase');
 $('button.swag-overflow').tooltip({
     'placement': 'right'
@@ -104,6 +114,7 @@ var swagify = function(s) {
         'xXx',
         'XxX',
         'xxX_',
+        '|',
         './|',
         '@@@',
         '$$$',
@@ -122,13 +133,18 @@ var swagify = function(s) {
         'SHOTS FIRED',
         '420',
         'LEGIT',
+        '360',
+        'Pr0',
         'NO$$$cop3z',
         '0SC0pe',
         'MLG',
+        'h4xx0r',
         'M4X$W4G',
+        'L3G1TZ',
         '3edgy5u',
         '2edgy4u',
         'nedgy(n+2)u',
+        's0b4s3d',
         'SWEG',
         'LEGIT',
         'WUBWUBWUB',
@@ -145,8 +161,11 @@ var swagify = function(s) {
         '31337',
         'Tr1Ck$h0t',
         'SCRUBLORD',
-        'MTNDEW',
         'DR0PTH3B4$$',
+        'w33d',
+        'ev REE DAI',
+        'MTNDEW',
+        'WATCH OUT',
         'EDGY',
         'ACE DETECTIVE',
         '90s KID',
@@ -154,6 +173,7 @@ var swagify = function(s) {
         'THANKS OBAMA',
         'SAMPLE TEXT',
         'FAZE'
+        '#nofilter'
 
     ];
 
@@ -165,6 +185,7 @@ var swagify = function(s) {
     };
 
     var add_tags = function(s) {
+<<<<<<< HEAD
         // Between 0 and MAX_TAGS - 1 tags are added at the front.
         var numtags = Math.floor(Math.random()*(MAX_TAGS)); 
 
@@ -220,6 +241,7 @@ var swagify = function(s) {
     s = decorate(s);
     s = add_tags(s);
 
+    s = s.replace('le', '[le]'); //GOTTA do this
     return s;
 };
 

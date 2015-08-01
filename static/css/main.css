@@ -28,6 +28,7 @@ h1.swagified {
 input.phrase {
     display: block;
     height: initial;
+
 }
 
 button.btn-block {
@@ -120,6 +121,10 @@ img.explosion {
 
 .right {
     right: 0;
+}
+
+p.footer {
+    padding-top: 200px; /*I am bad at CSS. I'm no @taybenlor */
 }
 
 
